@@ -11,6 +11,7 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 const alltransactions = require("./routes/alltransactions");
+const allusers = require("./routes/allusers");
 
 const app = express();
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use("/api/alltransactions", alltransactions);
+app.use("/api/allusers", allusers);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

@@ -11,6 +11,11 @@ export default (state, action) => {
         ...state,
         transactions: [...state.transactions, action.payload],
       };
+    case "ADD_USER":
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+      };
     case "DELETE_TRANSACTION":
       return {
         ...state,

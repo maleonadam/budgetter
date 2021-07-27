@@ -6,6 +6,7 @@ import AppReducer from "./AppReducer";
 // Initial State
 const initialState = {
   transactions: [],
+  users: [],
   error: null,
   loading: true,
 };
@@ -60,14 +61,34 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function addUser(user) {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.post("/api/allusers/register", user, config);
+      dispatch({ type: "ADD_USER", payload: res.data.data });
+    } catch (error) {
+      dispatch({
+        type: "TRANSACTIONS_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
+        users: state.users,
         getTransactions,
         error: state.error,
         loading: state.loading,
         addTransaction,
+        addUser,
         deleteTransaction,
       }}
     >
