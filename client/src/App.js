@@ -30,9 +30,8 @@ export default function App() {
 
   return (
     <GlobalProvider>
+      <Title />
       <div className="container">
-        <Title />
-
         <NewTransaction />
 
         <AllTransactions />
